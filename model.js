@@ -8,15 +8,15 @@ module.exports = function (mongoURL) {
         console.log(err);
       }
       else {
-        console.log("database connected");
+        console.log("Database connected");
       }
   });
   const apiSchema = mongoose.Schema({
-    barndName: String,
+    brand: String,
     size: Number,
     in_stock: Number,
     color: String,
-    price: Number,
+    price: Number
   })
   apiSchema.index({name: 1}, {unique: true})
   const apiModel = mongoose.model("apiModel", apiSchema)
