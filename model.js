@@ -12,13 +12,13 @@ module.exports = function (mongoURL) {
       }
   });
   const apiSchema = mongoose.Schema({
-    brand: String,
+    brand: {type:String, unique: true},
     size: Number,
     in_stock: Number,
     color: String,
     price: Number
   })
-  apiSchema.index({name: 1}, {unique: true})
+
   const apiModel = mongoose.model("apiModel", apiSchema)
 
   return {

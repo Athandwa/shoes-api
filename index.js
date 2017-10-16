@@ -39,19 +39,61 @@ app.get("/api/shoes", function(req, res) {
 });
 
 app.get("/api/shoes/brand/:brandname", function(req, res) {
+    var filteredBrand = req.params.brandname
+    model.apiModel.find({
+            brand: filteredBrand
+        }, function(err, results) {
+            if (err) {
+            console.log(err);
+        } else {
+            res.json(results)
 
+        }
+    })
 });
 
 app.get("/api/shoes/size/:size", function(req, res) {
+  var filteredSize = req.params.size
 
+  model.apiModel.find({
+    size: filteredSize
+  }, function (err, results) {
+    if (err) {
+      console.log(err);
+    }else {
+      res.json(results);
+    }
+  })
 });
 
 app.get("/api/shoes/brand/:brandname/size/:size", function(req, res) {
+  var filteredBrand = req.params.brandname
+  var filteredSize = req.params.size
 
+  model.apiModel.find({
+    brand: filteredBrand,
+    size: filteredSize
+  }, function (err, results) {
+    if (err) {
+      console.log(err);
+    }else {
+      res.json(results)
+    }
+  })
 });
 
 app.post("/api/shoes/sold/:id", function(req, res) {
+ var soldShoe = req.params.id
 
+ model.apiModel.find({
+   _id: soldShoe
+ }, function (err, results) {
+   if (err) {
+     console.log(err);
+   }else {
+     res.json(results)
+   }
+ })
 });
 
 app.post("/api/shoes", function(req, res) {
@@ -66,10 +108,9 @@ app.post("/api/shoes", function(req, res) {
             console.log(err);
         } else {
             res.json(results);
+
         }
     })
-
-
 
 });
 
