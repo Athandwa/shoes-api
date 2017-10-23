@@ -5,29 +5,29 @@ $(document).ready(function() {
     var tableStock = document.getElementById('tableStock');
 
 
-  function listStock() {
-    console.log("Hello");
+    function listStock() {
+        console.log("Hello");
         $.ajax({
             type: 'GET',
             url: '/api/shoes',
             success: function(shoeData) {
-            $.each (shoeData,function (i,shoes) {
-              console.log(shoes);
-              var html = combineTemplate({
-                  shoesList: shoes
-              });
+                $.each(shoeData, function(i, shoes) {
+                    console.log(shoes);
+                    var html = combineTemplate({
+                        shoesList: shoes
+                    });
 
-              tableStock.innerHTML = html;
-            })
+                    tableStock.innerHTML = html;
+                })
             },
             error: function() {
                 console.log('an error has occured');
             }
-        }).done(function (results) {
+        }).done(function(results) {
 
         })
     }
-      listStock();
+    listStock();
 
     $('.addButton').on('click', function() {
         var newShoe = {
@@ -37,29 +37,27 @@ $(document).ready(function() {
             color: document.querySelector('.color').value,
             price: document.querySelector('.price').value
         }
-        // console.log("list: "+newShoe);
         newStock(newShoe);
-        console.log("******"+newShoe);
         tableStock.innerHTML = combineTemplate({
             shoesList: newShoe
         })
-          document.querySelector('.brand').value = "",
-          document.querySelector('.size').value = "",
-          document.querySelector('.stock').value = "",
-          document.querySelector('.color').value = "",
-          document.querySelector('.price').value = ""
+        document.querySelector('.brand').value = "",
+            document.querySelector('.size').value = "",
+            document.querySelector('.stock').value = "",
+            document.querySelector('.color').value = "",
+            document.querySelector('.price').value = ""
     });
 
-  });
+});
 
 function newStock(shoes) {
-  $.ajax({
-      type: 'POST',
-      url: 'http://localhost:4000/api/shoes',
-      data: shoes,
-  }).done(function(results) {
-    console.log("Output: "+results.data);
-  })
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:4000/api/shoes',
+        data: shoes,
+    }).done(function(results) {
+        console.log("Output: " + results.data);
+    })
 }
 
 

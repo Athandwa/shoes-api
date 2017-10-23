@@ -22,19 +22,7 @@ app.engine("html", exphbs({
 }));
 app.use(express.static("public"));
 
-app.set("view engine", "html")
-
-// app.get("/", function(req, res) {
-//     model.apiModel.find({}, function(err, results) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.json({results})
-//             console.log(results);
-//         }
-//     })
-//
-// });
+app.set("view engine", "html");
 
 app.get("/api/shoes", function(req, res) {
     model.apiModel.find({}, function(err, results) {
