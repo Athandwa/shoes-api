@@ -24,15 +24,24 @@ app.use(express.static("public"));
 
 app.set("view engine", "html")
 
+// app.get("/", function(req, res) {
+//     model.apiModel.find({}, function(err, results) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.json({results})
+//             console.log(results);
+//         }
+//     })
+//
+// });
 
 app.get("/api/shoes", function(req, res) {
-    model.apiModel.find({
-
-    }, function(err, results) {
+    model.apiModel.find({}, function(err, results) {
         if (err) {
             console.log(err);
         } else {
-            res.json(results)
+            res.json({results})
         }
     })
 
@@ -46,7 +55,7 @@ app.get("/api/shoes/brand/:brandname", function(req, res) {
             if (err) {
             console.log(err);
         } else {
-            res.json(results)
+            res.json({results})
 
         }
     })
@@ -61,7 +70,7 @@ app.get("/api/shoes/size/:size", function(req, res) {
     if (err) {
       console.log(err);
     }else {
-      res.json(results);
+      res.json({results});
     }
   })
 });
@@ -77,7 +86,7 @@ app.get("/api/shoes/brand/:brandname/size/:size", function(req, res) {
     if (err) {
       console.log(err);
     }else {
-      res.json(results)
+      res.json({results})
     }
   })
 });
@@ -91,7 +100,7 @@ app.post("/api/shoes/sold/:id", function(req, res) {
    if (err) {
      console.log(err);
    }else {
-     res.json(results)
+     res.json({results})
    }
  })
 });
@@ -107,7 +116,9 @@ app.post("/api/shoes", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json(results);
+            res.json({results});
+            // res.redirect("http://localhost:4000/api/shoes")
+            console.log(results);
 
         }
     })

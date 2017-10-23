@@ -1,27 +1,33 @@
 $(document).ready(function() {
 
-    var tableTemplate = document.querySelector('.shoeTamplate').innerHTML;
-    var combineTemplate = Handlebars.compile('tableTemplate');
+    var tableTemplate = document.querySelector('.shoeTamplate');
+    var combineTemplate = Handlebars.compile(tableTemplate.innerHTML);
     var tableStock = document.getElementById('tableStock');
 
 
-    $(function listStock() {
-
+  function listStock() {
+    console.log("Hello");
         $.ajax({
             type: 'GET',
             url: '/api/shoes',
-            sucess: function(shoeData) {
-                console.log(shoeData);
-                tableStock.innerHTML = combineTemplate({
-                    shoesList: shoeData
-                })
+            success: function(shoeData) {
+            $.each (shoeData,function (i,shoes) {
+              console.log(shoes);
+              var html = combineTemplate({
+                  shoesList: shoes
+              });
+
+              tableStock.innerHTML = html;
+            })
             },
             error: function() {
                 console.log('an error has occured');
             }
+        }).done(function (results) {
+
         })
-    })
-    // listStock();
+    }
+      listStock();
 
     $('.addButton').on('click', function() {
         var newShoe = {
@@ -31,16 +37,11 @@ $(document).ready(function() {
             color: document.querySelector('.color').value,
             price: document.querySelector('.price').value
         }
-        $.ajax({
-            type: 'POST',
-            url: '/api/shoes',
-            shoeData: newShoe,
-            sucess: function() {
-                listStock()
-            },
-            error: function() {
-                console.log('an error has occured');
-            }
+        // console.log("list: "+newShoe);
+        newStock(newShoe);
+        console.log("******"+newShoe);
+        tableStock.innerHTML = combineTemplate({
+            shoesList: newShoe
         })
           document.querySelector('.brand').value = "",
           document.querySelector('.size').value = "",
@@ -49,9 +50,17 @@ $(document).ready(function() {
           document.querySelector('.price').value = ""
     });
 
-});
+  });
 
-
+function newStock(shoes) {
+  $.ajax({
+      type: 'POST',
+      url: 'http://localhost:4000/api/shoes',
+      data: shoes,
+  }).done(function(results) {
+    console.log("Output: "+results.data);
+  })
+}
 
 
 
