@@ -1,7 +1,6 @@
 {
   "name": "shoes_api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -12,8 +11,18 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "index.js",
+    "test": "mocha"
   },
   "author": "Lakhiwe Liwani",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Athandwa/shoes_api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Athandwa/shoes_api/issues"
+  },
+  "homepage": "https://github.com/Athandwa/shoes_api#readme",
+  "description": ""
 }
