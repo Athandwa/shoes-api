@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
     <title>Shoe Catalogue Api</title>
@@ -17,27 +19,29 @@
     <div class="container-fluid">
         <div class="w3-row-padding">
             <script type="text/x-handlebars-tamplate" class="shoeTamplate">
-                <table>
+                <table class="table table-striped">
                     <thead>
+                      <th>Brand</th>
                         <th>Stock</th>
                         <th>Size</th>
                         <th>Price</th>
-                        <th>Brand</th>
                         <th>Colour</th>
+                        <th>Purchase</th>
+
                     </thead>
                     {{#each shoesList}}
                     <tbody>
-                    <tr>
-                        <td>{{in_stock}}</td>
-                        <td>{{size}}</td>
-                        <td>{{price}}</td>
-                        <td>{{brand}}</td>
-                        <td>{{color}}</td>
-                        <td>
-                            <form class="sell" method="post"><button class='btn btn-primary' onClick="window.location.reload()" id="button" value={{id}}>Buy</button></form>
-                        </td>
-                    </tr>
-                  </tbody>
+                        <tr>
+                            <td>{{brand}}</td>
+                            <td>{{in_stock}}</td>
+                            <td>{{size}}</td>
+                            <td>{{price}}</td>
+                            <td>{{color}}</td>
+                            <td>
+                                <form class="sell" method="post"><button class="btn btn-success" onClick="window.location.reload()" id="button" value={{id}}>Buy</button></form>
+                            </td>
+                        </tr>
+                    </tbody>
                     {{/each}}
                 </table>
             </script>
@@ -51,16 +55,22 @@
                 <!-- <div class="srchBtn">
                     <button type="search" name="Search">Search</button>
                 </div> -->
-                <form method="post">
                 <div class="displayStock">
-                    <button type="button" class="addButton" name="button">Add</button><br><br>
+                    <button type="button" id="addButton" class="btn btn-primary" name="button">Add</button><br><br>
                     <input type="text" name="text" class="brand" placeholder="Brand..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
                     <input type="text" name="text" class="size" placeholder="Size..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
                     <input type="text" name="text" class="color" placeholder="Color..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
                     <input type="text" name="text" class="price" placeholder="Price..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
                     <input type="text" name="text" class="stock" placeholder="Stock..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 </div>
-              </form>
+                <h2>Search for Brand or Size</h2></br></br>
+                <div class="filterBrand">
+                  <input type="text" name="text" class="filterBrand" placeholder="Seacrh For Brand"></br></br>
+                </div>
+                <div class="filterSize">
+                  <input type="text" name="text" class="filterSize" placeholder="Seacrh For Size">
+                </div>
+
                 <hr>
                 <h2>Stock Available</h2>
                 <div id="tableStock" class="table-responsive">

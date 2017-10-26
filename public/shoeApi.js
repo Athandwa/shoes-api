@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 
     function listStock() {
-        console.log("Hello");
         $.ajax({
             type: 'GET',
             url: '/api/shoes',
@@ -29,7 +28,8 @@ $(document).ready(function() {
     }
     listStock();
 
-    $('.addButton').on('click', function() {
+
+    $('#addButton').on('click', function() {
         var newShoe = {
             brand: document.querySelector('.brand').value,
             size: document.querySelector('.size').value,
@@ -38,15 +38,16 @@ $(document).ready(function() {
             price: document.querySelector('.price').value
         }
         newStock(newShoe);
-        tableStock.innerHTML = combineTemplate({
-            shoesList: newShoe
-        })
-        document.querySelector('.brand').value = "",
+        listStock();
+
+            document.querySelector('.brand').value = "",
             document.querySelector('.size').value = "",
             document.querySelector('.stock').value = "",
             document.querySelector('.color').value = "",
             document.querySelector('.price').value = ""
     });
+
+
 
 });
 
@@ -55,19 +56,6 @@ function newStock(shoes) {
         type: 'POST',
         url: 'http://localhost:4000/api/shoes',
         data: shoes,
-    }).done(function(results) {
-        console.log("Output: " + results.data);
-    })
+    }).done(function(results) {})
+
 }
-
-
-
-
-
-
-
-// $.shoeData.append('<li>' + shoesList.brand + '</li>');
-// $.shoeData.append('<li>' + shoesList.size + '</li>');
-// $.shoeData.append('<li>' + shoesList.in_stock + '</li>');
-// $.shoeData.append('<li>' + shoesList.color + '</li>');
-// $.shoeData.append('<li>' + shoesList.price + '</li>');
