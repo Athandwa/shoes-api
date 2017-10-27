@@ -17,9 +17,10 @@ h1{
 }
 #tableStock{
   padding-top: 10px;
-  /*background-color: orange;*/
+  background-color: LightCoral;
   margin-left: 80px;
   margin-right: 80px;
+
 }
 .srchBtn{
   margin-bottom: 20px;

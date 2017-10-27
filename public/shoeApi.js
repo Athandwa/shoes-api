@@ -40,15 +40,48 @@ $(document).ready(function() {
         newStock(newShoe);
         listStock();
 
-            document.querySelector('.brand').value = "",
+        document.querySelector('.brand').value = "",
             document.querySelector('.size').value = "",
             document.querySelector('.stock').value = "",
             document.querySelector('.color').value = "",
             document.querySelector('.price').value = ""
     });
+    ////////////////////////////
+    $('#filterButton').on('click', function() {
+      var size = document.querySelector('.filterSize').value;
 
+      function filterBySize() {
+        $.ajax({
+          type: 'GET',
+          url: "/api/shoes/size/" + size,
+          success: function(results) {
+            console.log(results.results);
 
+            tableStock.innerHTML = combineTemplate({
+              shoesList: results.results
+            });
+          }
+        })
+      }
+      filterBySize();
+    ////////////////////////////
 
+    var brand = document.querySelector('.filterBrand').value;
+    function filterByBrand() {
+      $.ajax({
+        type: 'GET',
+        url: "/api/shoes/brand/" + brand,
+        success: function (results) {
+            console.log(results.results);
+
+            tableStock.innerHTML = combineTemplate({
+              shoesList: results.results
+            });
+        }
+      })
+    }
+    filterByBrand();
+  });
 });
 
 function newStock(shoes) {

@@ -35,8 +35,8 @@
                             <td>{{brand}}</td>
                             <td>{{in_stock}}</td>
                             <td>{{size}}</td>
-                            <td>{{price}}</td>
                             <td>{{color}}</td>
+                            <td>{{price}}</td>
                             <td>
                                 <form class="sell" method="post"><button class="btn btn-success" onClick="window.location.reload()" id="button" value={{id}}>Buy</button></form>
                             </td>
@@ -49,12 +49,6 @@
                 <h1>Shoe Catalogue Api</h1>
             </div>
             <div class="container">
-                <!-- <div class="Show">
-                    <button id="show" onclick="show()">Show Stock</button><br><br>
-                </div> -->
-                <!-- <div class="srchBtn">
-                    <button type="search" name="Search">Search</button>
-                </div> -->
                 <div class="displayStock">
                     <button type="button" id="addButton" class="btn btn-primary" name="button">Add</button><br><br>
                     <input type="text" name="text" class="brand" placeholder="Brand..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
@@ -63,11 +57,10 @@
                     <input type="text" name="text" class="price" placeholder="Price..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
                     <input type="text" name="text" class="stock" placeholder="Stock..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 </div>
-                <h2>Search for Brand or Size</h2></br></br>
-                <div class="filterBrand">
+                <h2>Search for Brand or Size</h2></br>
+                <div>
+                <button type="button" name="button" id="filterButton" class="btn btn-warning">Filter</button></br></br>
                   <input type="text" name="text" class="filterBrand" placeholder="Seacrh For Brand"></br></br>
-                </div>
-                <div class="filterSize">
                   <input type="text" name="text" class="filterSize" placeholder="Seacrh For Size">
                 </div>
 

@@ -13,8 +13,8 @@ module.exports = function (mongoURL) {
   });
   const apiSchema = mongoose.Schema({
     brand: {type:String, unique: true},
-    size: Number,
     in_stock: Number,
+    size: Number,
     color: String,
     price: Number
   })
