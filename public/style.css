@@ -1,11 +1,12 @@
 h1{
   text-align: center;
-  padding-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-style: italic;
   text-shadow: 0.1em 0.1em 0.15em #333;
   font-size: 4em;
   box-sizing: border-box;
-  /*background-color: green;*/
+  background-color: Bisque;
 }
 .checkButton{
   padding-top: 30px;

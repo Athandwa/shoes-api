@@ -21,7 +21,7 @@
             <script type="text/x-handlebars-tamplate" class="shoeTamplate">
                 <table class="table table-striped">
                     <thead>
-                      <th>Brand</th>
+                        <th>Brand</th>
                         <th>Stock</th>
                         <th>Size</th>
                         <th>Price</th>
@@ -50,18 +50,42 @@
             </div>
             <div class="container">
                 <div class="displayStock">
-                    <button type="button" id="addButton" class="btn btn-primary" name="button">Add</button><br><br>
-                    <input type="text" name="text" class="brand" placeholder="Brand..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-                    <input type="text" name="text" class="size" placeholder="Size..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-                    <input type="text" name="text" class="color" placeholder="Color..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-                    <input type="text" name="text" class="price" placeholder="Price..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-                    <input type="text" name="text" class="stock" placeholder="Stock..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Stock</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Add New Stock</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <button type="button" id="addButton" class="btn btn-primary" name="button">Add</button><br><br>
+                                    <input type="text" name="text" class="brand" placeholder="Brand..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
+                                    <input type="text" name="text" class="size" placeholder="Size..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
+                                    <input type="text" name="text" class="color" placeholder="Color..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
+                                    <input type="text" name="text" class="price" placeholder="Price..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
+                                    <input type="text" name="text" class="stock" placeholder="Stock..."><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <h2>Search for Brand or Size</h2></br>
                 <div>
-                <button type="button" name="button" id="filterButton" class="btn btn-warning">Filter</button></br></br>
-                  <input type="text" name="text" class="filterBrand" placeholder="Seacrh For Brand"></br></br>
-                  <input type="text" name="text" class="filterSize" placeholder="Seacrh For Size">
+                    <button type="button" name="button" id="filterButton" class="btn btn-warning">Filter</button></br>
+                    </br>
+                    <input type="text" name="text" class="filterBrand" placeholder="Seacrh For Brand"></br>
+                    </br>
+                    <input type="text" name="text" class="filterSize" placeholder="Seacrh For Size">
                 </div>
 
                 <hr>
