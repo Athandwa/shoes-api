@@ -47,6 +47,6 @@ h2{
   text-shadow: 0.1em 0.1em 0.15em #333;
   font-size: 2em;
 }
-th, td{
-  text-align: center;
-}
+/*th{
+  text-align: right;
+}*/
