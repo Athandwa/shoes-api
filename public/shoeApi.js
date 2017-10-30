@@ -3,7 +3,7 @@ $(document).ready(function() {
     var tableTemplate = document.querySelector('.shoeTamplate');
     var combineTemplate = Handlebars.compile(tableTemplate.innerHTML);
     var tableStock = document.getElementById('tableStock');
-
+    var sellButton = document.querySelector ('#sold');
 
     function listStock() {
         $.ajax({
@@ -46,6 +46,58 @@ $(document).ready(function() {
             document.querySelector('.color').value = "",
             document.querySelector('.price').value = ""
     });
+
+    $('#showButton').on('click', function() {
+        var showButton = document.querySelector('#showButton');
+        var tableTemplate = document.querySelector('.shoeTamplate');
+        var combineTemplate = Handlebars.compile(tableTemplate.innerHTML);
+        var tableStock = document.getElementById('tableStock');
+
+
+        function listStock() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/shoes',
+                success: function(shoeData) {
+                    $.each(shoeData, function(i, shoes) {
+                        console.log(shoes);
+                        var html = combineTemplate({
+                            shoesList: shoes
+                        });
+
+                        tableStock.innerHTML = html;
+                    })
+                },
+                error: function() {
+                    console.log('an error has occured');
+                }
+            }).done(function(results) {
+
+            })
+        }
+        listStock();
+
+    });
+// var sellButton = document.querySelector('#sold');
+//   $('#sellButton').on('click', function() {
+//     var sellButton = document.querySelector('#sold');
+//     var soldShoe = req.params.id
+//
+//     function sellShoes(_id) {
+//         $.ajax({
+//             type: 'POST',
+//             url: '/api/shoes/sold/' + id,
+//             // data: shoes,
+//         }).done(function(results) {
+//
+//           soldShoe: results._id
+//         })
+//
+//     }
+// sellShoes();
+//
+//   })
+
     ////////////////////////////
     $('#filterButton').on('click', function() {
       var size = document.querySelector('.filterSize').value;
@@ -92,3 +144,22 @@ function newStock(shoes) {
     }).done(function(results) {})
 
 }
+///////////////////////
+
+  // $('#sold').on('click', function() {
+    //var sellButton = document.querySelector('#sold');
+    //var soldShoe = req.params.id
+
+    function sellShoes(soldShoe) {
+        $.ajax({
+            type: 'POST',
+            url: '/api/shoes/sold/' + soldShoe,
+            success: function(soldItem) {
+              listStock();
+            }
+        })
+
+    }
+// sellShoes();
+
+  // })
