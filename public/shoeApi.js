@@ -78,25 +78,6 @@ $(document).ready(function() {
         listStock();
 
     });
-// var sellButton = document.querySelector('#sold');
-//   $('#sellButton').on('click', function() {
-//     var sellButton = document.querySelector('#sold');
-//     var soldShoe = req.params.id
-//
-//     function sellShoes(_id) {
-//         $.ajax({
-//             type: 'POST',
-//             url: '/api/shoes/sold/' + id,
-//             // data: shoes,
-//         }).done(function(results) {
-//
-//           soldShoe: results._id
-//         })
-//
-//     }
-// sellShoes();
-//
-//   })
 
     ////////////////////////////
     $('#filterButton').on('click', function() {
@@ -146,20 +127,21 @@ function newStock(shoes) {
 }
 ///////////////////////
 
-  // $('#sold').on('click', function() {
-    //var sellButton = document.querySelector('#sold');
-    //var soldShoe = req.params.id
 
+// sellButton.addEventListener('click', function() {
+//   alert(sellButton.value)
+// })
     function sellShoes(soldShoe) {
         $.ajax({
             type: 'POST',
             url: '/api/shoes/sold/' + soldShoe,
             success: function(soldItem) {
-              listStock();
+              console.log(soldShoe);
+              // listStock();
             }
         })
-
+        window.location.reload();
     }
-// sellShoes();
+    // sellShoes();
 
   // })

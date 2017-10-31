@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoURL = process.env.MONGO_DB_URL || "mongodb://localhost/api";
 const Models = require("./model");
 const model = Models(mongoURL);
+const ObjectId = require('mongodb').ObjectId;
 
 var app = express();
 
@@ -82,9 +83,13 @@ app.get("/api/shoes/brand/:brandname/size/:size", function(req, res) {
 app.post("/api/shoes/sold/:id", function(req, res) {
  var soldShoe = req.params.id
 
- model.apiModel.find({
-   _id: soldShoe
- }, function (err, results) {
+ model.apiModel.findOneAndUpdate({
+   _id: ObjectId(soldShoe)
+ }, {
+   $inc:{in_stock: -1}
+ },{
+   upsert: false
+ },function (err, results) {
    if (err) {
      console.log(err);
    }else {
