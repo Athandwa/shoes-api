@@ -120,7 +120,7 @@ $(document).ready(function() {
 function newStock(shoes) {
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:4000/api/shoes',
+        url: '/api/shoes',
         data: shoes,
     }).done(function(results) {})
 
