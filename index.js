@@ -110,7 +110,6 @@ app.post("/api/shoes", function(req, res) {
             console.log(err);
         } else {
             res.json({results});
-            // res.redirect("http://localhost:4000/api/shoes")
             console.log(results);
 
         }

@@ -12,7 +12,7 @@ module.exports = function (mongoURL) {
       }
   });
   const apiSchema = mongoose.Schema({
-    brand: {type:String, unique: true},
+    brand:  String,
     in_stock: Number,
     size: Number,
     color: String,
