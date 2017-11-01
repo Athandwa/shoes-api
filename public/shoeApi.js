@@ -3,7 +3,9 @@ $(document).ready(function() {
     var tableTemplate = document.querySelector('.shoeTamplate');
     var combineTemplate = Handlebars.compile(tableTemplate.innerHTML);
     var tableStock = document.getElementById('tableStock');
-    var sellButton = document.querySelector ('#sold');
+    var sellButton = document.querySelector('#sold');
+
+//**************Get the list of stock available**********************
 
     function listStock() {
         $.ajax({
@@ -28,7 +30,7 @@ $(document).ready(function() {
     }
     listStock();
 
-
+//***************Add new stock when the button is clicked****************
     $('#addButton').on('click', function() {
         var newShoe = {
             brand: document.querySelector('.brand').value,
@@ -46,6 +48,15 @@ $(document).ready(function() {
             document.querySelector('.color').value = "",
             document.querySelector('.price').value = ""
     });
+    function newStock(shoes) {
+        $.ajax({
+            type: 'POST',
+            url: '/api/shoes',
+            data: shoes,
+        }).done(function(results) {})
+
+    }
+//*************Show the stock when the button is cilcked*************
 
     $('#showButton').on('click', function() {
         var showButton = document.querySelector('#showButton');
@@ -79,69 +90,56 @@ $(document).ready(function() {
 
     });
 
-    ////////////////////////////
+//******filter by size*********
+
     $('#filterButton').on('click', function() {
-      var size = document.querySelector('.filterSize').value;
+        var size = document.querySelector('.filterSize').value;
 
-      function filterBySize() {
-        $.ajax({
-          type: 'GET',
-          url: "/api/shoes/size/" + size,
-          success: function(results) {
-            console.log(results.results);
+        function filterBySize() {
+            $.ajax({
+                type: 'GET',
+                url: "/api/shoes/size/" + size,
+                success: function(results) {
+                    console.log(results.results);
 
-            tableStock.innerHTML = combineTemplate({
-              shoesList: results.results
-            });
-          }
-        })
-      }
-      filterBySize();
-    ////////////////////////////
-
-    var brand = document.querySelector('.filterBrand').value;
-    function filterByBrand() {
-      $.ajax({
-        type: 'GET',
-        url: "/api/shoes/brand/" + brand,
-        success: function (results) {
-            console.log(results.results);
-
-            tableStock.innerHTML = combineTemplate({
-              shoesList: results.results
-            });
+                    tableStock.innerHTML = combineTemplate({
+                        shoesList: results.results
+                    });
+                }
+            })
         }
-      })
-    }
-    filterByBrand();
-  });
+        filterBySize();
+
+//*******filter by brandnames*******
+
+        var brand = document.querySelector('.filterBrand').value;
+
+        function filterByBrand() {
+            $.ajax({
+                type: 'GET',
+                url: "/api/shoes/brand/" + brand,
+                success: function(results) {
+                    console.log(results.results);
+
+                    tableStock.innerHTML = combineTemplate({
+                        shoesList: results.results
+                    });
+                }
+            })
+        }
+        filterByBrand();
+    });
 });
 
-function newStock(shoes) {
+//************Update when the shoe is sold**************
+
+function sellShoes(soldShoe) {
     $.ajax({
         type: 'POST',
-        url: '/api/shoes',
-        data: shoes,
-    }).done(function(results) {})
-
+        url: '/api/shoes/sold/' + soldShoe,
+        success: function(soldItem) {
+            console.log(soldShoe);
+        }
+    })
+    window.location.reload();
 }
-///////////////////////
-
-
-// sellButton.addEventListener('click', function() {
-//   alert(sellButton.value)
-// })
-    function sellShoes(soldShoe) {
-        $.ajax({
-            type: 'POST',
-            url: '/api/shoes/sold/' + soldShoe,
-            success: function(soldItem) {
-              console.log(soldShoe);
-              // listStock();
-            }
-        })
-        window.location.reload();
-    }
-    // sellShoes();
-
-  // })
